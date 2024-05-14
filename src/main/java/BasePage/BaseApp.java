@@ -18,38 +18,18 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter;
 import com.github.javafaker.Faker;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
-
-
-
 public class BaseApp {
 	public static WebDriver driver;
 	public WebDriverWait wait;
 	public Actions Action;
 	public static Connection con;
-
-	public void start(String url, String path) {
-		
-		//System.setProperty("webdriver.chrome.driver", path + "//ChromeDriver//chromedriver.exe");
-		WebDriverManager.chromedriver().setup();
-		driver = new ChromeDriver();
-		driver.manage().deleteAllCookies();
-		driver.manage().timeouts().implicitlyWait(1, TimeUnit.MINUTES);
-		DesiredCapabilities caps = new DesiredCapabilities();
-		// Change resolution
-		caps.setCapability("resolution", "1024x768");
-		driver.manage().window().maximize();
-		driver.get(url);
-	}
 
 	public void teardown() {
 		driver.quit();
@@ -88,7 +68,7 @@ public class BaseApp {
 		String a[] = current.split("-");
 		return a;
 	}
-	
+
 	public static void deleteVideos(String path) {
 		File directory = new File(path);
 		File[] files = directory.listFiles();
@@ -96,19 +76,19 @@ public class BaseApp {
 			file.delete();
 		}
 	}
-	
+
 	public void refresh() {
 		driver.navigate().refresh();
-		
+
 	}
-	
+
 	public void clearText(String xpath) {
 		WebElement toClear = driver.findElement(By.xpath(xpath));
 		toClear.sendKeys(Keys.CONTROL + "a");
 		toClear.sendKeys(Keys.DELETE);
-		
+
 	}
-	
+
 	public void SelectAll(String xpath) {
 		driver.findElement(By.xpath(xpath)).sendKeys(Keys.chord(Keys.CONTROL, "a"));
 	}
@@ -533,14 +513,14 @@ public class BaseApp {
 		return con;
 
 	}
-	
+
 	public void frame() {
 		driver.switchTo().frame(0);
-		
+
 	}
-	
+
 	public void newtab() {
-	ArrayList<String> tabs = new ArrayList<String> (driver.getWindowHandles());
-    driver.switchTo().window(tabs.get(1));
+		ArrayList<String> tabs = new ArrayList<String>(driver.getWindowHandles());
+		driver.switchTo().window(tabs.get(1));
 	}
 }

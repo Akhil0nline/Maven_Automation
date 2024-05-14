@@ -1,5 +1,7 @@
 package TestPage;
 
+import org.testng.Assert;
+
 import BasePage.BaseApp;
 
 public class LoginPage extends BaseApp {
@@ -22,6 +24,19 @@ public class LoginPage extends BaseApp {
         click(Dropbox);
         MoveToElement(dropdown);
         click(dropdown);
+        Assert.assertEquals(isDisplayed(dropdown), true);
+
+        String actualText = getText(What);
+
+        // Expected string to verify
+        String expectedText = What;
+
+        // Verify the text
+        if (actualText.equals(expectedText)) {
+            System.out.println("String verification successful!");
+        } else {
+            System.out.println("String verification failed!");
+        }
 
     }
 }
