@@ -38,11 +38,6 @@
 					<suiteXmlFiles>
 						<suiteXmlFile>InterfaceTestNG.xml</suiteXmlFile>
 					</suiteXmlFiles>
-					<systemPropertyVariables>
-                    <allure.results.directory>test-output/allure-results</allure.results.directory>
-                    <allure.link.issue.pattern>https://example.org/browse/{}</allure.link.issue.pattern>
-                    <allure.link.tms.pattern>https://example.org/browse/{}</allure.link.tms.pattern>
-                </systemPropertyVariables>
 					 <argLine>
                     -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
                     -Dcucumber.options="--plugin io.qameta.allure.cucumber4jvm.AllureCucumber4Jvm"
@@ -63,53 +58,10 @@
 				</executions>
 			</plugin>
 			<plugin>
-				<groupId>tech.grasshopper</groupId>
-				<artifactId>cucumber-pdf-plugin</artifactId>
-				<version>1.4.4</version>
-				<executions>
-					<execution>
-						<id>report</id>
-						<phase>post-integration-test</phase>
-						<goals>
-							<goal>pdfreport</goal>
-						</goals>
-					</execution>
-				</executions>
-				<configuration>
-					<cucumberJsonReportDirectory>${project.build.directory}
-					</cucumberJsonReportDirectory>
-					<cucumberPdfReportDirectory>target/pdf-report</cucumberPdfReportDirectory>
-					<strictCucumber6Behavior>true</strictCucumber6Behavior>
-				</configuration>
-			</plugin>
-			<plugin>
 			<!-- https://mvnrepository.com/artifact/net.masterthought/maven-cucumber-reporting -->
 				<groupId>net.masterthought</groupId>
     			<artifactId>maven-cucumber-reporting</artifactId>
     			<version>5.6.2</version>
-				<executions>
-					<execution>
-						<id>execution</id>
-						<phase>verify</phase>
-						<goals>
-							<goal>generate</goal>
-						</goals>
-						<configuration>
-							<projectName>INTERFACE AUTOMATION</projectName>
-							<outputDirectory>target/cucumber-reports/advanced-reports</outputDirectory>
-							<cucumberOutput>target/cucumber-reports/cucumber.json</cucumberOutput>
-							<buildNumber>1</buildNumber>
-							<parallelTesting>false</parallelTesting>
-							<skip>false</skip>
-							<inputDirectory>${project.build.directory}/cucumber-reports</inputDirectory>
-							<jsonFiles>
-								<param>**/*.json</param>
-							</jsonFiles>
-							<classificationDirectory>${project.build.directory}/cucumber-reports</classificationDirectory>
-							<checkBuildResult>true</checkBuildResult>
-						</configuration>
-					</execution>
-				</executions>
 			</plugin>
 		</plugins>
 	</build>
@@ -247,11 +199,12 @@
 		</dependency>
 		
 <!-- https://mvnrepository.com/artifact/io.github.bonigarcia/webdrivermanager -->
-		<dependency>
-			<groupId>io.github.bonigarcia</groupId>
-			<artifactId>webdrivermanager</artifactId>
-			<version>3.7.1</version>
-		</dependency>
+<dependency>
+    <groupId>io.github.bonigarcia</groupId>
+    <artifactId>webdrivermanager</artifactId>
+    <version>5.8.0</version>
+</dependency>
+
 
 <!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-api -->
 		<dependency>
